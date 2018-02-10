@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import MapMarker from './map-marker';
 
 class Map extends Component {
     constructor(props) {
@@ -7,14 +8,18 @@ class Map extends Component {
 
         this.state = {
             map:  null,
+            markers: [],
         };
 
         this.setMarkers = this.setMarkers.bind(this);
+        this.renderMarkers = this.renderMarkers.bind(this);
     }
 
     render() {
         return (
-            <div className="map" ref="map"></div>
+            <div className="map" ref="map">
+                { this.renderMarkers() }
+            </div>
         );
     }
 
@@ -48,27 +53,14 @@ class Map extends Component {
     }
 
     setMarkers(results, status, pagination) {
-        results.map((place) => {
-            const infoWindow = new google.maps.InfoWindow();
+        this.setState({ markers: results });
+    }
 
-            const marker = new google.maps.Marker({
-                map: this.state.map,
-                title: place.name,
-                position: place.geometry.location
-            });
-
-            infoWindow.setContent(place.name);
-
-            google.maps.event.addListener(marker, 'click', () => {
-            });
-
-            google.maps.event.addListener(marker, 'mouseover', () => {
-                infoWindow.open(this.state.map, marker);
-            });
-
-            google.maps.event.addListener(marker, 'mouseout', () => {
-                infoWindow.close();
-            });
+    renderMarkers() {
+        return this.state.markers.map((place) => {
+            return (
+                <MapMarker key={ place.name } map={ this.state.map } place={ place } />
+            );
         });
     }
 }
