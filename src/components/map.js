@@ -17,11 +17,15 @@ class Map extends Component {
   }
 
   render() {
-    return (
-      <div className="map" ref="map">
-        {this.renderMarkers()}
-      </div>
-    );
+    if (this.props.coordinates) {
+      return (
+        <div className="map" ref="map">
+          {this.renderMarkers()}
+        </div>
+      );
+    }
+
+    return false;
   }
 
   componentDidUpdate() {
@@ -39,9 +43,6 @@ class Map extends Component {
       this.setState({ map });
 
       const service = new google.maps.places.PlacesService(map);
-
-      this.setState({ service });
-
       service.nearbySearch({
         location: {
           lat: coordinates.latitude,
