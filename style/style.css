@@ -1,4 +1,29 @@
+html, body {
+  height:100%;
+}
+
+.app {
+  background-color: #000;
+  height: inherit;  
+}
+
+.fullscreen {
+  height: inherit;
+}
+
 .map {
-    height: 400px;
-    width: 100%;
+  height: inherit;
+}
+
+.fullscreen-table {
+  height: inherit;
+  width: 100%;
+  display: table;
+}
+
+.fullscreen-cell {
+  color: #fff;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }
