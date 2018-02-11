@@ -41,7 +41,7 @@ class LocationButton extends Component {
   onButtonClick(event) {
     event.preventDefault();
 
-    this.setState({ message: 'Aguarde, estamos tentando localizar sua posição atual :D' });
+    this.setState({ message: 'Wait while we try to locate you :D' });
 
     if (navigator.geolocation) {
       return navigator.geolocation.getCurrentPosition((position) => {
@@ -52,7 +52,7 @@ class LocationButton extends Component {
       });
     }
 
-    return this.setState({ message: 'Não é possível localizar sua posição com esse navegador D:' })
+    return this.setState({ message: 'We can\'t determinate your location D:' })
   }
 }
 
