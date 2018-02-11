@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MarkerInfoWindow from './marker-info-window';
+import MarkerInfoWindow from '../containers/marker-info-window';
 
 class MapMarker extends Component {
   constructor(props) {
@@ -24,10 +24,6 @@ class MapMarker extends Component {
       title: place.name,
       position: place.geometry.location,
     });
-
-    // google.maps.event.addListener(marker, 'click', () => {
-    //     this.saveUserClick(place);
-    // });
 
     this.setState({ marker });
   }
