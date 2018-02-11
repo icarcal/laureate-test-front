@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { API_URL, SEARCH_RADIUS } from '../configuration';
 
 class MarkerInfoWindow extends Component {
   render() {
@@ -12,15 +14,28 @@ class MarkerInfoWindow extends Component {
 
     infoWindow.setContent(
       `<strong>${place.name}</strong>
-            <p>${place.vicinity}</p>`
+       <p>${place.vicinity}</p>`
     );
 
-    google.maps.event.addListener(marker, 'mouseover', () => {
-      infoWindow.open(map, marker);
-    });
+    google.maps.event.addListener(marker, 'click', () => {
+      const placeData = {
+        latitude: place.geometry.location.latitude,
+        longitude: place.geometry.location.latitude,
+        radius: SEARCH_RADIUS,
+        university: {
+          name: place.name,
+          vicinity: place.vicinity,
+        },
+      }
 
-    google.maps.event.addListener(marker, 'mouseout', () => {
-      infoWindow.close();
+
+      axios.post(`${API_URL}/places`, placeData).then(() => {
+        console.log('tudo ok');
+      }, () => {
+        console.log('zicou');
+      });
+
+      infoWindow.open(map, marker);
     });
   }
 }
