@@ -12,31 +12,27 @@ class LocationButton extends Component {
     }
 
     this.onButtonClick = this.onButtonClick.bind(this);
-    this.renderButton = this.renderButton.bind(this);
   }
 
   render() {
-    return (
-      <div className="row">
-        <div className="col-sm-12">
-          {this.renderButton()}
-          {this.renderMessage()}
-        </div>
-      </div>
-    );
-  }
-
-  renderButton() {
     if (!this.props.coords) {
-      return <button className="btn btn-primary center" onClick={this.onButtonClick}>Click to enable your location</button>
+      return (
+        <div className="fullscreen-table">
+          <div className="fullscreen-cell">
+            <h1>Laureate challenge</h1>
+            <button className="btn btn-secondary btn-lg" onClick={this.onButtonClick}>Click to enable your location</button>
+            {this.renderMessage()}
+          </div>
+        </div>
+      );
     }
 
-    return '';
+    return null;
   }
 
   renderMessage() {
     if (this.state.message) {
-      return <p className="text-center">{this.state.message}</p>
+      return <h5>{this.state.message}</h5>
     }
 
     return '';

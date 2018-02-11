@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import MapMarker from './map-marker';
+import { SEARCH_RADIUS } from '../configuration';
 
 class Map extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class Map extends Component {
           lat: coordinates.latitude,
           lng: coordinates.longitude,
         },
-        radius: 5000,
+        radius: SEARCH_RADIUS,
         type: 'university'
       }, this.setMarkers);
     }

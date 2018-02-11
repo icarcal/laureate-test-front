@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 class MapLoader extends Component {
   render() {
     return (
-      <div>
+      <div className="fullscreen">
         <LocationButton />
         <Map coordinates={this.props.coords} />
       </div>

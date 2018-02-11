@@ -4,7 +4,7 @@ import MapLoader from '../containers/map-loader'
 export default class App extends Component {
   render() {
     return (
-      <div>
+      <div className="fullscreen">
         <MapLoader />
       </div>
     );
